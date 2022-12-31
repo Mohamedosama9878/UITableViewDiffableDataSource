@@ -60,9 +60,11 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     private func updateSnapShot() {
+        var animations : [UITableView.RowAnimation] = [.right, .automatic, .bottom, .fade, .middle]
         var snapshot = NSDiffableDataSourceSnapshot<Section,Car>()
         snapshot.appendSections([.first, .second])
         snapshot.appendItems(cars)
+        dataSource.defaultRowAnimation = animations.randomElement() ?? .fade
         dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
     }
     
